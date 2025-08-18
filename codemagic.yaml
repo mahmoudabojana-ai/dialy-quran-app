@@ -7,8 +7,16 @@ workflows:
       flutter: stable
       xcode: latest
       cocoapods: latest
+
     scripts:
-      - flutter packages get
-      - flutter build apk --release
+      - name: Set up Flutter
+        script: |
+          flutter doctor
+          flutter pub get
+
+      - name: Build for Android
+        script: |
+          flutter build apk --release
+
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
